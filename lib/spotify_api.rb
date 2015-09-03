@@ -4,9 +4,10 @@ class SpotifyApi
 
   attr_accessor :artist, :track, :player, :reply_to
 
-  def initialize(artist, reply_to = nil)
-    @artist = RSpotify::Artist.search(artist).first
-    @reply_to = reply_to
+  # TODO check all tracks instead of top_tracks from us
+  def initialize(params = {})
+    @artist = RSpotify::Artist.search(params[:artist]).first
+    @reply_to = params[:reply_to]
     @track = @artist.top_tracks(:us).sample
     @player = player
   end
@@ -19,12 +20,9 @@ class SpotifyApi
     "NP: #{@track.name} by #{@track.artists.first.name} listen now on #{@player}"
   end
 
+  # TODO validate if there's a found track or artist if not post a not found reply message
   def composed_reply_tweet
-    if @track.present?
     "Hi @#{@reply_to} here's \"#{@track.name}\" by #{@track.artists.first.name} listen now on #{@player}"
-    else
-      "Oops @#{@reply_to} there's no available soundtrack for your artist."
-    end
   end
 
 

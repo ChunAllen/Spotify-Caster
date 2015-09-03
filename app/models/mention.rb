@@ -8,7 +8,7 @@ class Mention < ActiveRecord::Base
   # default status: unreplied
   def self.save_mentions(mentions)
     mentions.each do |mention|
-      where(mention_id: mention.id).first_or_create do |attr|
+      find_or_create_by(mention_id: mention.id) do |attr|
         attr.mention_id = mention.id
         attr.reply_to = mention.user.screen_name
         attr.mentioned_user = mention.user_mentions.last.name

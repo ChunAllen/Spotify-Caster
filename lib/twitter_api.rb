@@ -8,7 +8,7 @@ class TwitterApi
     @client = TWITTER_CLIENT
   end
 
-  # post a tweet from @spotifycaster account
+  # post a tweet user bot account
   def post(tweet)
     @client.update(tweet)
   end
@@ -23,14 +23,24 @@ class TwitterApi
     Mention.save_mentions(@client.mentions_timeline)
   end
 
-  # Replies requested songs to unreplied mentions
+  # Replies requested songs to unreplied mentions using bot account
   def reply_unreplied_mentions
     Mention.unreplied_mentions.each do |mention|
-      message = SpotifyApi.new(mention.mentioned_user, mention.reply_to).composed_reply_tweet
-      @client.update(message, in_reply_to_status_id: mention.mention_id)
-      mention.update(status: "replied")
+      transaction(mention)
     end
   end
+
+  private
+
+    def transaction(mention)
+      begin
+        message = SpotifyApi.new({artist: mention.mentioned_user, reply_to: mention.reply_to}).composed_reply_tweet
+        @client.update(message, in_reply_to_status_id: mention.mention_id)
+        mention.update(status: "replied")
+      rescue Exception => e
+        Rails.logger.fatal "Failed to reply to a tweet due to: #{e}"
+      end
+    end
 
 end
 
