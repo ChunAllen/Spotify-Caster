@@ -1,5 +1,3 @@
-require 'twitter'
-
 class TwitterApi
 
   attr_accessor :client

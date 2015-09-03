@@ -7,12 +7,5 @@ namespace :tweet do
     client.post(composed_tweet)
   end
 
-  desc "Replies requested songs to unreplied mentions"
-  task request: :environment do
-    client = TwitterApi.new
-    client.save_mentions
-    client.reply_unreplied_mentions
-  end
-
 end
 
