@@ -15,7 +15,11 @@ class SpotifyApi
   end
 
   def composed_tweet
-    "NP: #{@track.name} by #{@track.artists.first.name} listen now on #{@player}"
+    "#{@track.name} by #{@track.artists.first.name} listen now on #{@player}"
+  end
+
+  def composed_reply_tweet(screen_name)
+    "Hi @#{screen_name} here's a song from #{@track.artists.first.name} listen now on #{@player}"
   end
 
 

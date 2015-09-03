@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'twitter', '~> 5.14.0'
+gem 'twitter'
 gem 'rspotify'
 
 group :doc do
