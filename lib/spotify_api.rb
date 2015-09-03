@@ -2,14 +2,13 @@ require 'rspotify'
 
 class SpotifyApi
 
-  attr_accessor :artist, :track, :player
+  attr_accessor :artist, :track, :player, :reply_to
 
-  def initialize(artist)
+  def initialize(artist, reply_to = nil)
     @artist = RSpotify::Artist.search(artist).first
-    if @artist.present?
-      @track = @artist.top_tracks(:us).sample
-      @player = player
-    end
+    @reply_to = reply_to
+    @track = @artist.top_tracks(:us).sample
+    @player = player
   end
 
   def player
@@ -20,11 +19,11 @@ class SpotifyApi
     "NP: #{@track.name} by #{@track.artists.first.name} listen now on #{@player}"
   end
 
-  def composed_reply_tweet(reply_to)
+  def composed_reply_tweet
     if @track.present?
-      "Hi @#{reply_to} here's a song from #{@track.artists.first.name} listen now on #{@player}"
+    "Hi @#{@reply_to} here's \"#{@track.name}\" by #{@track.artists.first.name} listen now on #{@player}"
     else
-      "Oops @#{reply_to} there's no available soundtrack for your artist."
+      "Oops @#{@reply_to} there's no available soundtrack for your artist."
     end
   end
 

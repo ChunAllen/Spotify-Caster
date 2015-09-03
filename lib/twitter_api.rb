@@ -23,10 +23,10 @@ class TwitterApi
     Mention.save_mentions(@client.mentions_timeline)
   end
 
-  # Replies to all unmentions tweets
-  def reply_to_all_unmentions
+  # Replies requested songs to unreplied mentions
+  def reply_unreplied_mentions
     Mention.unreplied_mentions.each do |mention|
-      message = SpotifyApi.new(mention.mentioned_user).composed_reply_tweet(mention.reply_to)
+      message = SpotifyApi.new(mention.mentioned_user, mention.reply_to).composed_reply_tweet
       @client.update(message, in_reply_to_status_id: mention.mention_id)
       mention.update(status: "replied")
     end
