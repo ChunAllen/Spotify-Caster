@@ -3,15 +3,13 @@ class SpotifyApi
   attr_accessor :artist, :track, :player
 
   def initialize(params = {})
-    @artist = get_artist params[:artist]
+    @artist = RSpotify::Artist.search(artist).first
     @track = get_random_track
     @player = get_track_url
   end
 
   # Returns the artist
   def get_artist(artist)
-    RSpotify::Artist.search(artist).first
-    #available_artists.first.name if available_artists.any?
   end
 
   # Returns random track from artist
