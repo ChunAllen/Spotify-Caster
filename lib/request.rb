@@ -1,9 +1,9 @@
 class Request
 
-  def self.run
-    client = TwitterApi.new
-    client.save_mentions
-    client.reply_unreplied_mentions
+  def self.send
+    twitter_client = TwitterApi.new
+    twitter_client.save_mentions
+    twitter_client.reply_unreplied_mentions
   end
 
 end

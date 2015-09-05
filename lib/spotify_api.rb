@@ -1,28 +1,27 @@
-require 'rspotify'
-
 class SpotifyApi
 
-  attr_accessor :artist, :track, :player, :reply_to
+  attr_accessor :artist, :track, :player
 
-  # TODO check all tracks instead of top_tracks from us
   def initialize(params = {})
-    @artist = RSpotify::Artist.search(params[:artist]).first
-    @reply_to = params[:reply_to]
-    @track = @artist.top_tracks(:us).sample
-    @player = player
+    @artist = get_artist params[:artist]
+    @track = get_random_track
+    @player = get_track_url
   end
 
-  def player
-    RSpotify::Track.find(@track.id).external_urls["spotify"]
+  # Returns the artist
+  def get_artist(artist)
+    RSpotify::Artist.search(artist).first
+    #available_artists.first.name if available_artists.any?
   end
 
-  def composed_hourly_tweet
-    "NP: #{@track.name} by #{@track.artists.first.name} listen now on #{@player}"
+  # Returns random track from artist
+  def get_random_track
+    @artist.top_tracks(:us).sample unless @artist.nil?
   end
 
-  # TODO validate if there's a found track or artist if not post a not found reply message
-  def composed_reply_tweet
-    "Hi @#{@reply_to} here's \"#{@track.name}\" by #{@track.artists.first.name} listen now on #{@player}"
+  # Returns the track url
+  def get_track_url
+    RSpotify::Track.find(@track.id).external_urls["spotify"] unless @track.nil?
   end
 
 
