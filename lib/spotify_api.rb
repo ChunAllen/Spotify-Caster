@@ -4,8 +4,8 @@ class SpotifyApi
 
   def initialize(artist)
     @artist = RSpotify::Artist.search(artist).first
-    @track = get_random_track
-    @player = get_track_url
+    #@track = get_random_track
+    #@player = get_track_url
   end
 
   # Returns random track from artist

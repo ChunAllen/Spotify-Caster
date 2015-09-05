@@ -23,11 +23,12 @@ end
 
 group :development, :test do
  gem 'pry'
- gem 'spring'
  gem 'rspec-rails'
 end
 
 group :test do
+  gem 'webmock'
+  gem 'vcr'
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
   gem 'factory_girl_rails'

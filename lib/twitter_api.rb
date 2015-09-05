@@ -1,3 +1,5 @@
+require 'twitter'
+
 class TwitterApi
 
   include TweetComposer
