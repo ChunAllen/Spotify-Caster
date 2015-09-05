@@ -7,7 +7,7 @@ namespace :tweet do
   desc "Tweets a random song from your followed artists"
   task random_song: :environment do
     twitter_client = TwitterApi.new
-    spotify_client = SpotifyApi.new({artist: twitter_client.followed_artist})
+    spotify_client = SpotifyApi.new(artist: twitter_client.followed_artist)
     message = composed_tweet({
       track_name: spotify_client.track.try(:name),
       artist_name: spotify_client.artist.try(:name),
