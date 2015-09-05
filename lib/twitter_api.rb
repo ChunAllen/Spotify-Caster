@@ -45,7 +45,6 @@ class TwitterApi
                                artist_name: spotify_client.artist.try(:name),
                                player: spotify_client.player
         })
-
         @client.update(message, in_reply_to_status_id: mention.mention_id)
         mention.update(status: "replied")
       rescue Exception => e

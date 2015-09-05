@@ -11,7 +11,35 @@ describe TwitterApi do
   end
 
   describe "#update" do
-    it "post a message to twitter"
+    it "calls update from api" do
+      expect(api).to receive(:update).with("hello")
+      api.update("hello")
+    end
+  end
+
+  describe "#followed_artist" do
+    it "calls followed_atrtists" do
+      expect(api).to receive(:followed_artist)
+      api.followed_artist
+    end
+  end
+
+  describe "#save_mentions" do
+    it "calls mentions_timeline" do
+      expect(api).to receive(:save_mentions)
+      api.save_mentions
+    end
+  end
+
+  describe "#reply_unreplied_mentions" do
+    let!(:unreplied_mention) { create :mention }
+    it "returns unreplied_mentions" do
+      expect(api.reply_unreplied_mentions).to include unreplied_mention
+    end
+    it "calls reply_unreplied_mentions" do
+      expect(api).to receive(:reply_unreplied_mentions)
+      api.reply_unreplied_mentions
+    end
   end
 
 end
