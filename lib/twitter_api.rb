@@ -20,7 +20,9 @@ class TwitterApi
 
   # Get mentions that doesn't have replies
   def save_mentions
-    Mention.save_mentions(@client.mentions_timeline)
+    @client.mentions.timeline.each do |mention|
+      Mention.save_mention(mention)
+    end
   end
 
   # Replies requested songs to unreplied mentions using bot account
