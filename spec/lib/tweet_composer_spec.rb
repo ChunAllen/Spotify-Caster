@@ -30,7 +30,7 @@ describe TweetComposer do
 
     context "reply_to is not present" do
       it "tweets a hourly_tweet" do
-        expect(composed_tweet(hourly_tweet)).to eq "NP: Cool Kids by Echosmith listen now on spotify_url"
+        expect(composed_tweet(hourly_tweet)).to eq "NP: \"Cool Kids\" by Echosmith listen now on spotify_url"
       end
     end
   end
