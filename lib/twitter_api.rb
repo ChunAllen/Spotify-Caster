@@ -38,7 +38,7 @@ class TwitterApi
 
     def transaction(mention)
       begin
-        spotify_client = SpotifyApi.new(artist: mention.mentioned_user)
+        spotify_client = SpotifyApi.new(mention.mentioned_user)
 
         message = composed_tweet({reply_to: mention.reply_to,
                                track_name: spotify_client.track.try(:name),
