@@ -20,7 +20,7 @@ class TwitterApi
 
   # Get mentions that doesn't have replies
   def save_mentions
-    @client.mentions.timeline.each do |mention|
+    @client.mentions_timeline.each do |mention|
       Mention.save_mention(mention)
     end
   end
