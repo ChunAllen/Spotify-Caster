@@ -1,21 +1,21 @@
-require 'rspotify'
-
 class SpotifyApi
 
   attr_accessor :artist, :track, :player
 
   def initialize(artist)
     @artist = RSpotify::Artist.search(artist).first
-    @track = @artist.top_tracks(:us).sample
-    @player = player
+    @track = get_random_track
+    @player = get_track_url
   end
 
-  def player
-    RSpotify::Track.find(@track.id).external_urls["spotify"]
+  # Returns random track from artist
+  def get_random_track
+    @artist.top_tracks(:us).sample unless @artist.nil?
   end
 
-  def composed_tweet
-    "NP: #{@track.name} by #{@track.artists.first.name} listen now on #{@player}"
+  # Returns the track url
+  def get_track_url
+    RSpotify::Track.find(@track.id).external_urls["spotify"] unless @track.nil?
   end
 
 

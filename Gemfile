@@ -8,8 +8,10 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
-gem 'twitter', '~> 5.14.0'
+gem 'twitter'
 gem 'rspotify'
+gem 'haml-rails'
+gem 'hashie'
 
 group :doc do
   gem 'sdoc', '~> 0.4.0'
@@ -21,12 +23,13 @@ end
 
 group :development, :test do
  gem 'pry'
- gem 'spring'
  gem 'rspec-rails'
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
+  gem 'factory_girl_rails'
 end
 
 
