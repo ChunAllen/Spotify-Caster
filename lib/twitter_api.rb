@@ -20,7 +20,7 @@ class TwitterApi
     @client.following.attrs[:users].map { |user| user[:name] }.sample
   end
 
-  # Get mentions that doesn't have replies
+  # Get mentions and save it to mentions table
   def save_mentions
     @client.mentions_timeline.each do |mention|
       Mention.save_mention(mention)
