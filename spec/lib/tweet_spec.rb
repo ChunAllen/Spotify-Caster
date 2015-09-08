@@ -4,6 +4,13 @@ describe Tweet do
 
   let!(:api) { TwitterApi.new }
 
+  describe ".client" do
+    it "receives client" do
+      expect(TwitterApi).to receive(:new)
+      Tweet.client
+    end
+  end
+
   describe  ".requests" do
     before :each do
       allow(Tweet).to receive(:requests)
