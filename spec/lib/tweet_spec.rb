@@ -2,40 +2,40 @@ require 'rails_helper'
 
 describe Tweet do
 
-  let!(:api) { TwitterApi.new }
+  let!(:client) { TwitterApi.new }
+  let!(:tweet) { Tweet.new }
 
-  describe ".client" do
-    it "receives client" do
-      expect(TwitterApi).to receive(:new)
-      Tweet.client
+  describe ".initialize" do
+    it "sets the twitter client" do
+      expect(tweet.client).to_not be_nil
     end
   end
 
-  describe  ".requests" do
+  describe  "#requests" do
     before :each do
-      allow(Tweet).to receive(:requests)
+      tweet.requests
     end
     it "receives save_mentions" do
-      expect(api).to receive(:save_mentions)
-      api.save_mentions
+      expect(client).to receive(:save_mentions)
+      client.save_mentions
     end
     it "receives reply_unreplied_mentions" do
-      expect(api).to receive(:reply_unreplied_mentions)
-      api.reply_unreplied_mentions
+      expect(client).to receive(:reply_unreplied_mentions)
+      client.reply_unreplied_mentions
     end
   end
 
-  describe ".random_song" do
+  describe "#random_song" do
     before :each do
-      allow(Tweet).to receive(:random_song)
+      tweet.random_song
     end
     it "receives followed_artist" do
-      expect(api).to receive(:followed_artist)
-      api.followed_artist
+      expect(client).to receive(:followed_artist)
+      client.followed_artist
     end
     it "receives update" do
-      expect(api).to receive(:update).with("hello")
-      api.update("hello")
+      expect(client).to receive(:update).with("hello")
+      client.update("hello")
     end
   end
 

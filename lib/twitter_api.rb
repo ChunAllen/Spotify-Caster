@@ -7,7 +7,7 @@ class TwitterApi
   attr_accessor :client
 
   def initialize
-    @client = TWITTER_CLIENT
+    @client =  twitter_client
   end
 
   # post a tweet user bot account
@@ -49,6 +49,15 @@ class TwitterApi
         mention.update(status: "replied")
       rescue Exception => e
         Rails.logger.fatal "Failed to reply to a tweet due to: #{e}"
+      end
+    end
+
+    def twitter_client
+      Twitter::REST::Client.new do |config|
+        config.consumer_key = Rails.application.secrets.TWITTER_CONSUMER_KEY
+        config.consumer_secret = Rails.application.secrets.TWITTER_CONSUMER_SECRET
+        config.access_token = Rails.application.secrets.TWITTER_ACCESS_TOKEN
+        config.access_token_secret = Rails.application.secrets.TWITTER_ACCESS_TOKEN_SECRET
       end
     end
 
