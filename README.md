@@ -1,6 +1,17 @@
 # Spotifycaster #
 Twitter Bot that tweets a random song from followed artist per hour.
 
+# Stacks #
+* Rails 4.1.6
+* ruby 2.1.4p265
+* Sass
+* Rspec3
+* Node.js
+* Twitter Api
+* Spotify Api
+* Bower
+* Humane JS
+
 ### Features: ###
 1. It tweets a random song per hour
 ![screenshot 2015-09-05 12 57
@@ -18,12 +29,25 @@ Twitter Bot that tweets a random song from followed artist per hour.
 ### Installation ###
 - Clone the project:
 ```
-git clone git@github.com:ChunAllen/ruby-exercise.git
+git clone git@github.com:ChunAllen/Spotify-Caster.git
 ```
 - Copy ***secrets.yml.template*** and fill up Twitter and Spotify Credentials:
 ```
 cp config/secrets.yml.template config/secrets.yml
 ```
+- Fill Up Spotify and Twitter Api Credentials in config/secrets.yml
+
+```
+default: &default
+  TWITTER_CONSUMER_KEY: ''
+  TWITTER_CONSUMER_SECRET: ''
+  TWITTER_ACCESS_TOKEN: ''
+  TWITTER_ACCESS_TOKEN_SECRET: ''
+  SPOTIFY_CLIENT_ID: ''
+  SPOTIFY_CLIENT_SECRET: ''
+```
+
+
 - Deploy to Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
@@ -43,4 +67,5 @@ You can also check an video demo by clicking the link below:
 
 ### Resource Links: ###
 [Twitter] (https://twitter.com/spotifycaster)
+
 [Web App] (spotifycaster.herokuapp.com)
