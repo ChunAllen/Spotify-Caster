@@ -1,32 +1,46 @@
+# Spotifycaster #
+Twitter Bot that tweets a random song from followed artist per hour.
+
+### Features: ###
+1. It tweets a random song per hour
+![screenshot 2015-09-05 12 57
+46](https://cloud.githubusercontent.com/assets/2100728/9704259/0c2171ee-54d2-11e5-97b6-ee35a612f289.png)
+
+2. You can request for a random song from your favorite artist.
+![screenshot 2015-09-05 12 55
+38](https://cloud.githubusercontent.com/assets/2100728/9704265/218e295a-54d2-11e5-9f5f-945d49271802.png)
+
+
+### Heroku Scheduler: ###
+* It tweets a random song per hour
+* Responds to requested mentions every 10 minutes
+
+### Installation ###
+- Clone the project:
+```
+git clone git@github.com:ChunAllen/ruby-exercise.git
+```
+- Copy ***secrets.yml.template*** and fill up Twitter and Spotify Credentials:
+```
+cp config/secrets.yml.template config/secrets.yml
+```
+- Deploy to Heroku
+
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-# Overview #
 
-Write a simple Ruby app that tweets about something of your choice every hour or responds when tweeted at.
+- Add rake task to your Heroku Scheduler:
+```
+rake tweet:random_song
+```
+```
+rake tweet:request
+```
 
-We have provided an example rails app here as it facilitates hosting on Heroku, but you are welcome to use any solution in Ruby.
 
-There is no one way to complete this exercise as long as the minimum requirements are met.
-When you are finished, please send us a pull request of the finished product.
-A clean Git History (with relevant commit messages) is a bonus.
+### Demo: ###
+You can also check an video demo by clicking the link below:
+[Link for Demo](https://vimeo.com/138433160)
 
-Your code should be performant and intuitive.
-
-Any questions, please ask.
-
-Notes:
-  - There are various twitter API gems available, no need to write your own access.
-      - Search https://www.ruby-toolbox.com for more info on your options.
-
-  - Heroku Scheduler is a simple Heroku add-on for background jobs.
-
-  - The point of this isn't to stress about what to tweet, so some examples are:
-    - Find anagrams in others tweets
-    - Look for accidental haiku in tweets and reformat then retweet
-    - Looks for song lyrics in tweets and posts song names
-    - Grabs tweets, puts it through a text-to-speech api and posts a link to the audio
-    - Two bots playing chess together.
-    - Random words from a dictionary
-    - @reply a sample image of a colour if you tweet a hexcode at the bot.
-    - Snowball poems 
-    - Sports results
-    - Battleships
+### Resource Links: ###
+[Twitter] (https://twitter.com/spotifycaster)
+[Web App] (spotifycaster.herokuapp.com)
