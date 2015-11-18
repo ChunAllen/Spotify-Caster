@@ -1,6 +1,11 @@
 # Spotifycaster #
 Twitter Bot that tweets a random song from followed artist per hour.
 
+Used ruby on rails app here instead of plain ruby,
+becuase I'm saving the tweets and determine whether it was mentioned or
+unmentioned.
+
+
 # Stacks #
 * Rails 4.1.6
 * ruby 2.1.4p265
